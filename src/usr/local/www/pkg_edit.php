@@ -54,7 +54,13 @@ if ($xml == "" || $xml_fullpath === false || substr($xml_fullpath, 0, strlen('/u
 }
 
 if ($pkg['include_file'] != "") {
-	require_once($pkg['include_file']);
+	$ext = strstr($pkg['include_file'], "inc");
+	if($ext == true) {
+		$location = "/usr/local/www/".$pkg['include_file']."";
+		require_once($location);
+	} else {
+		die("You must be use XML");
+	}
 }
 
 if (!isset($pkg['adddeleteeditpagefields'])) {
